@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
     public bool resurrected;
     public Renderer rend;
     public NavMeshAgent agent;
+    public Transform player;
+    public Transform enemy;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -33,6 +35,7 @@ public class Enemy : MonoBehaviour
 
         while(currentState == ENEMY_STATE.ALIVE) 
         {
+            agent.SetDestination(player.position);
             if(health <= 0)
             {
                 StartCoroutine(State_Dead());
@@ -65,7 +68,7 @@ public class Enemy : MonoBehaviour
         rend.material.color = Color.blue;
         while(currentState == ENEMY_STATE.UNDEAD)
         {
-            // Follow and attack enemies
+            agent.SetDestination(enemy.position);
 
             yield return null;
         }
