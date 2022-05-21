@@ -11,12 +11,11 @@ public class ThirdPersonMovement : MonoBehaviour
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+    private Vector2 _inputMoveVector;
 
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        Vector3 direction = new Vector3(_inputMoveVector.x, 0f, _inputMoveVector.y).normalized;
 
         if(direction.magnitude >= 0.1f)
         {
@@ -26,5 +25,10 @@ public class ThirdPersonMovement : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
+    }
+
+    public void SetMoveVector(Vector2 direction)
+    {
+        _inputMoveVector = direction;
     }
 }
