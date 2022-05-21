@@ -106,4 +106,9 @@ public class Enemy : MonoBehaviour
         }
         return closestEnemy;
     }
+    public void TakeDamage(int amount) 
+    {
+        health -= amount;
+    }
+
 }
