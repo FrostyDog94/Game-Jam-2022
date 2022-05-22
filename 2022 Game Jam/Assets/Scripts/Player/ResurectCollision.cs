@@ -5,6 +5,8 @@ using UnityEngine;
 public class ResurectCollision : MonoBehaviour
 {
 
+    public PlayerStats playerStats;
+
     void OnTriggerStay(Collider other)
     {
         if (other.tag == "Enemy" && other.GetComponent<Enemy>().currentState == ENEMY_STATE.DEAD) 
@@ -14,7 +16,7 @@ public class ResurectCollision : MonoBehaviour
             if (Input.GetMouseButton(1))
             {
                 StartCoroutine(other.GetComponent<Enemy>().State_Undead());
-                Debug.Log(other.name);
+                playerStats.currentMana -= 10;
             }
         }
     }
