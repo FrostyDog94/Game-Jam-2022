@@ -10,7 +10,7 @@ public class AttackCollisionDetection : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            Destroy(other.gameObject);
+            StartCoroutine(other.GetComponent<Enemy>().State_Dead());
             
         }
     }
