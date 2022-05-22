@@ -8,7 +8,7 @@ public class AttackCollisionDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" && other.GetComponent<Enemy>().currentState == ENEMY_STATE.ALIVE)
         {
             StartCoroutine(other.GetComponent<Enemy>().State_Dead());
             
