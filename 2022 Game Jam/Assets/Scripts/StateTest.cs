@@ -30,4 +30,5 @@ public class StateTest : MonoBehaviour
     {
         if(other.gameObject.tag == "Enemy") canTrigger = true;
     }
+   
 }

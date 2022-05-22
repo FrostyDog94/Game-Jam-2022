@@ -11,6 +11,7 @@ public class AttackCollisionDetection : MonoBehaviour
         if (other.tag == "Enemy")
         {
             Destroy(other.gameObject);
+            
         }
     }
 }

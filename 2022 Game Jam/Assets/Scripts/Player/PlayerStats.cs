@@ -7,11 +7,15 @@ public class PlayerStats : MonoBehaviour
 {
     public float maxHealth = 100.0f;
     public float currentHealth;
+    public float maxMana = 100.0f;
+    public float currentMana;
     public Slider healthBar;
+    public Slider manaBar;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        currentMana = maxMana;
     }
     void Update()
     {
@@ -19,6 +23,12 @@ public class PlayerStats : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             currentHealth -= 10;
+        }
+
+        manaBar.value = currentMana / maxMana;
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            currentMana -= 10;
         }
     }
     
