@@ -21,6 +21,7 @@ public class StateTest : MonoBehaviour
             }
             else if(other.gameObject.GetComponent<Enemy>().currentState == ENEMY_STATE.UNDEAD)
             {
+                EnemySpawner.instance.aliveEnemies.Remove(other.gameObject);
                 Destroy(other.gameObject);
             }
         }
