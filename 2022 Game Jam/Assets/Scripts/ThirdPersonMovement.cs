@@ -12,6 +12,12 @@ public class ThirdPersonMovement : MonoBehaviour
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
     private Vector2 _inputMoveVector;
+    public static ThirdPersonMovement instance = null;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Update()
     {
