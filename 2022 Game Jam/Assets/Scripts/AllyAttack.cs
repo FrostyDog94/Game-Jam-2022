@@ -2,20 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour
+public class AllyAttack : MonoBehaviour
 {
     private float attackCooldown = 2f;
     private float attackDamage = 5f;
     private bool canAttack = true;
-    private bool inRange = false; // is enemy within attacking range of player
-    private PlayerStats player;
+    private bool inRange = false; // is ally within attacking range of enemy
     private Enemy enemy;
-
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        enemy = gameObject.GetComponent<Enemy>();
-    }
 
     void Update()
     {
@@ -27,7 +20,7 @@ public class EnemyAttack : MonoBehaviour
     IEnumerator Attack()
     {
         canAttack = false;
-        player.currentHealth -= attackDamage;
+        enemy.health -= attackDamage;
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
@@ -35,7 +28,8 @@ public class EnemyAttack : MonoBehaviour
     void OnTriggerEnter(Collider collision)
     {
         // collision with player
-        if(collision.gameObject.tag == "Player" && inRange == false && player.currentHealth > 0) {
+        if(collision.gameObject.tag == "Enemy" && inRange == false) {
+            enemy = collision.gameObject.GetComponent<Enemy>();
             inRange = true;
         }
     }
