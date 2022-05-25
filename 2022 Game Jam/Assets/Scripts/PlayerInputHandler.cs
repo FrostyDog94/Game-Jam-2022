@@ -9,6 +9,8 @@ using static UnityEngine.InputSystem.InputAction;
 public class PlayerInputHandler : MonoBehaviour
 {
     private ThirdPersonMovement playerMovement;
+    public Animator anim;
+    public bool moving = false;
 
 
     private void Awake()
@@ -19,7 +21,12 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMove(CallbackContext context)
     {
         if (playerMovement != null)
+        {
             playerMovement.SetMoveVector(context.ReadValue<Vector2>());
+        }
+
+      
+
     }
 
 }

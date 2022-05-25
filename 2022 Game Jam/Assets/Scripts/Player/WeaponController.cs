@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    public GameObject Staff;
+    public GameObject playerModel;
     public bool canAttack = true;
     public float attackCooldown = 1.0f;
     public Collider attackCollider;
     public float colliderCooldown = 0.1f;
+    public ParticleSystem particle;
 
     private void Start()
     {
@@ -29,8 +30,8 @@ public class WeaponController : MonoBehaviour
     public void staffAttack()
     {
         canAttack = false;
-        Animator anim = Staff.GetComponent<Animator>();
-        anim.SetTrigger("Attack");
+        Animator anim = GetComponent<Animator>();
+        anim.SetTrigger("attack");
         attackCollider.enabled = true;
         StartCoroutine(resetColliderCooldown());
         StartCoroutine(resetAttackCooldown());
@@ -47,6 +48,11 @@ public class WeaponController : MonoBehaviour
     {
         yield return new WaitForSeconds(colliderCooldown);
         attackCollider.enabled = false;
+    }
+
+    public void playParticle()
+    {
+        particle.Play();
     }
 
 
