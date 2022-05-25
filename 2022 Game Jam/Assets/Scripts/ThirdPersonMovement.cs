@@ -19,6 +19,18 @@ public class ThirdPersonMovement : MonoBehaviour
         instance = this;
     }
 
+    public Animator anim;
+
+    public static ThirdPersonMovement instance = null;
+    
+
+    void Awake()
+    {
+        instance = this;
+        anim = GetComponent<Animator>();
+    }
+
+
     void Update()
     {
         Vector3 direction = new Vector3(_inputMoveVector.x, 0f, _inputMoveVector.y).normalized;
@@ -30,6 +42,11 @@ public class ThirdPersonMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
+            anim.SetBool("isMoving", true);
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
         }
     }
 

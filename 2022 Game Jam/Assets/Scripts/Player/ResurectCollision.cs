@@ -6,6 +6,10 @@ public class ResurectCollision : MonoBehaviour
 {
 
     public PlayerStats playerStats;
+    public Animator anim;
+    
+
+
 
     void OnTriggerStay(Collider other)
     {
@@ -17,14 +21,20 @@ public class ResurectCollision : MonoBehaviour
             {
                 StartCoroutine(other.GetComponent<Enemy>().State_Undead());
                 playerStats.currentMana -= 10;
+                anim.SetTrigger("resurrect");
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        other.GetComponentInChildren<Outline>().enabled = false;
+        if (other.GetComponentInChildren<Outline>())
+        {
+            other.GetComponentInChildren<Outline>().enabled = false;
+        }
     }
+
+
 
 
 }
