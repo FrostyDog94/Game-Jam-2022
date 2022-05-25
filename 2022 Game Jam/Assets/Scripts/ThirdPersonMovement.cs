@@ -14,14 +14,9 @@ public class ThirdPersonMovement : MonoBehaviour
     private Vector2 _inputMoveVector;
     public static ThirdPersonMovement instance = null;
 
-    void Awake()
-    {
-        instance = this;
-    }
-
     public Animator anim;
 
-    public static ThirdPersonMovement instance = null;
+  
     
 
     void Awake()
