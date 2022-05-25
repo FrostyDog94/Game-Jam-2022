@@ -13,14 +13,16 @@ public class Enemy : MonoBehaviour
     public ENEMY_STATE currentState = ENEMY_STATE.ALIVE;
     public float health = 100f;
     private Renderer rend;
-    public float attackDistance = 1f;
+    public float attackDistance = 3f;
     private Transform player;
     [HideInInspector]
     public bool playerInRange;
     // [HideInInspector]
     public bool enemyInRange;
+    public Transform closestEnemy;
     [HideInInspector]
     public bool resurrected;
+
     void Start()
     {
         rend = GetComponentInChildren<Renderer>();
@@ -32,15 +34,17 @@ public class Enemy : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, player.position) <= attackDistance) playerInRange = true;
         else playerInRange = false;
-        if(GetClosestEnemy() != null && Vector3.Distance(transform.position, GetClosestEnemy().position) <= attackDistance) playerInRange = true;
-        else playerInRange = false;
+
+        closestEnemy = GetClosestEnemy();
+        if(closestEnemy != null && Vector3.Distance(transform.position, closestEnemy.position) <= attackDistance) enemyInRange = true;
+        else enemyInRange = false;
     }
 
     public IEnumerator State_Alive()
     {
         currentState = ENEMY_STATE.ALIVE;
-        // GetComponent<AttackEnemy>().enabled = true;
-        // GetComponent<AttackPlayer>().enabled = true;
+        GetComponent<EnemyAttack>().enabled = true;
+        GetComponent<AllyAttack>().enabled = false;
         GetComponent<AliveMovement>().enabled = true;
         while(currentState == ENEMY_STATE.ALIVE) 
         {
@@ -56,8 +60,8 @@ public class Enemy : MonoBehaviour
     public IEnumerator State_Dead()
     {
         currentState = ENEMY_STATE.DEAD;
-        // GetComponent<AttackPlayer>().enabled = false;
-        // GetComponent<AttackEnemy>().enabled = false;
+        GetComponent<EnemyAttack>().enabled = false;
+        GetComponent<AllyAttack>().enabled = false;
         GetComponent<AliveMovement>().enabled = false;
         GetComponent<UndeadMovement>().enabled = false;
         rend.material.color = Color.green;
@@ -77,7 +81,7 @@ public class Enemy : MonoBehaviour
     {
         currentState = ENEMY_STATE.UNDEAD;
         GetComponent<UndeadMovement>().enabled = true;
-        // GetComponent<AttackEnemy>().enabled = true;
+        GetComponent<AllyAttack>().enabled = true;
         rend.material.color = Color.blue;
         while(currentState == ENEMY_STATE.UNDEAD)
         {
@@ -106,6 +110,7 @@ public class Enemy : MonoBehaviour
         }
         return closestEnemy;
     }
+
     public void TakeDamage(int amount) 
     {
         health -= amount;
