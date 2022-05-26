@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     public float maxSpawnDist = 50f;
     private Transform player;
     private int enemyCount = 0;
-    [HideInInspector]
+    //[HideInInspector]
     public List<GameObject> aliveEnemies;
     [HideInInspector]
     public static EnemySpawner instance = null;

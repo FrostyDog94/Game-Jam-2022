@@ -51,6 +51,7 @@ public class Enemy : MonoBehaviour
         {
             if(health <= 0)
             {
+                
                 StartCoroutine(State_Dead());
                 yield break;
             }
@@ -66,7 +67,8 @@ public class Enemy : MonoBehaviour
         GetComponent<AliveMovement>().enabled = false;
         GetComponent<UndeadMovement>().enabled = false;
         rend.material.color = Color.green;
-        while(currentState == ENEMY_STATE.DEAD)
+        EnemySpawner.instance.aliveEnemies.Remove(this.gameObject);
+        while (currentState == ENEMY_STATE.DEAD)
         {
             if(resurrected)
             {

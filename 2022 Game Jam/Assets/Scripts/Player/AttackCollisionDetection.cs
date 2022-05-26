@@ -11,11 +11,11 @@ public class AttackCollisionDetection : MonoBehaviour
         if (other.tag == "Enemy" && other.GetComponent<Enemy>().currentState == ENEMY_STATE.ALIVE)
         {
 
-            StartCoroutine(other.GetComponent<Enemy>().State_Dead());
-            EnemySpawner.instance.aliveEnemies.Remove(other.gameObject);
+           //StartCoroutine(other.GetComponent<Enemy>().State_Dead());
+           //EnemySpawner.instance.aliveEnemies.Remove(other.gameObject);
             
             //StartCoroutine(other.GetComponent<Enemy>().State_Dead());
-            other.GetComponent<Enemy>().TakeDamage(20);
+           other.GetComponent<Enemy>().TakeDamage(20);
             
         }
     }
