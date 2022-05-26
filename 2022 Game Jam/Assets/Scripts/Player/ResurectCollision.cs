@@ -61,6 +61,7 @@ public class ResurectCollision : MonoBehaviour
     {
         yield return new WaitForSeconds(resurrectTime);
         StartCoroutine(enemyCollider.GetComponent<Enemy>().State_Undead());
+        enemyCollider.GetComponent<Enemy>().health = 100;
         thirdPersonMovement.enabled = true;
         canResurrect = true;
     }
