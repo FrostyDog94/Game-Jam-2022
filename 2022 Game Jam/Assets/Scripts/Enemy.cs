@@ -132,7 +132,7 @@ public class Enemy : MonoBehaviour
         return closestEnemy;
     }
 
-    public void TakeDamage(int amount) 
+    public void TakeDamage(float amount) 
     {
         health -= amount;
     }
