@@ -7,32 +7,64 @@ public class ResurectCollision : MonoBehaviour
 
     public PlayerStats playerStats;
     public Animator anim;
-    
+    public ThirdPersonMovement thirdPersonMovement;
+    public float resurrectTime = 3.5f;
+    Collider enemyCollider;
 
 
-
-    void OnTriggerStay(Collider other)
+    private void Update()
     {
-        if (other.tag == "Enemy" && other.GetComponent<Enemy>().currentState == ENEMY_STATE.DEAD) 
+        if (enemyCollider != null)
+        {
+            if (enemyCollider.tag == "Enemy" && enemyCollider.GetComponent<Enemy>().currentState == ENEMY_STATE.DEAD)
             {
-            other.GetComponentInChildren<Outline>().enabled = true;
+                enemyCollider.GetComponentInChildren<Outline>().enabled = true;
 
-            if (Input.GetMouseButton(1))
-            {
-                StartCoroutine(other.GetComponent<Enemy>().State_Undead());
-                playerStats.currentMana -= 10;
-                anim.SetTrigger("resurrect");
+                if (Input.GetMouseButtonDown(1))
+                {
+                    playerStats.currentMana -= 10;
+                    anim.SetTrigger("resurrect");
+                    thirdPersonMovement.enabled = false;
+                    StartCoroutine(raiseDead());
+
+                }
             }
         }
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Enemy" && other.GetComponent<Enemy>().currentState == ENEMY_STATE.DEAD)
+        {
+            enemyCollider = other;
+        }
+  
+
+    }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponentInChildren<Outline>())
+        if (enemyCollider != null)
         {
-            other.GetComponentInChildren<Outline>().enabled = false;
+            if (enemyCollider.GetComponentInChildren<Outline>())
+            {
+                enemyCollider.GetComponentInChildren<Outline>().enabled = false;
+            }
         }
+
+        enemyCollider = null;
     }
+
+    IEnumerator raiseDead()
+    {
+        yield return new WaitForSeconds(resurrectTime);
+        StartCoroutine(enemyCollider.GetComponent<Enemy>().State_Undead());
+        thirdPersonMovement.enabled = true;
+    }
+
+
+
+
 
 
 

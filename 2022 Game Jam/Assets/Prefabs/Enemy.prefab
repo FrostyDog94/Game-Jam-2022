@@ -159,6 +159,7 @@ MonoBehaviour:
   attackDistance: 3
   playerInRange: 0
   enemyInRange: 0
+  closestEnemy: {fileID: 0}
   resurrected: 0
 --- !u!114 &851169679365703813
 MonoBehaviour:

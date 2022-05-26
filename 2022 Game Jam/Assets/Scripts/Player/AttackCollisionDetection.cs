@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class AttackCollisionDetection : MonoBehaviour
 {
-    public WeaponController wc;
+  
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy" && other.GetComponent<Enemy>().currentState == ENEMY_STATE.ALIVE)
         {
+
             StartCoroutine(other.GetComponent<Enemy>().State_Dead());
+            
             
         }
     }
