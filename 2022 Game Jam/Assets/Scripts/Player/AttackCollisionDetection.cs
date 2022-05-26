@@ -12,6 +12,7 @@ public class AttackCollisionDetection : MonoBehaviour
         {
 
             StartCoroutine(other.GetComponent<Enemy>().State_Dead());
+            EnemySpawner.instance.aliveEnemies.Remove(other.gameObject);
             
             
         }

@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     public bool playerInRange;
     // [HideInInspector]
     public bool enemyInRange;
+    public bool allyInRange;
     public Transform closestEnemy;
     [HideInInspector]
     public bool resurrected;
@@ -94,17 +95,37 @@ public class Enemy : MonoBehaviour
         Transform closestEnemy = null;
         float distToClosestEnemy = Mathf.Infinity;
 
-        if(EnemySpawner.instance.aliveEnemies == null) return null;
-
-        foreach(GameObject enemy in EnemySpawner.instance.aliveEnemies)
+        if(currentState == ENEMY_STATE.ALIVE)
         {
-            if(enemy != this.gameObject)
+            if(EnemySpawner.instance.undeadEnemies == null) return null;
+
+            foreach(GameObject enemy in EnemySpawner.instance.undeadEnemies)
             {
-                float dist = Vector3.Distance(enemy.transform.position, player.position);
-                if(dist < distToClosestEnemy)
+                if(enemy != this.gameObject)
                 {
-                    closestEnemy = enemy.transform;
-                    distToClosestEnemy = dist;
+                    float dist = Vector3.Distance(enemy.transform.position, player.position);
+                    if(dist < distToClosestEnemy)
+                    {
+                        closestEnemy = enemy.transform;
+                        distToClosestEnemy = dist;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if(EnemySpawner.instance.aliveEnemies == null) return null;
+
+            foreach(GameObject enemy in EnemySpawner.instance.aliveEnemies)
+            {
+                if(enemy != this.gameObject)
+                {
+                    float dist = Vector3.Distance(enemy.transform.position, player.position);
+                    if(dist < distToClosestEnemy)
+                    {
+                        closestEnemy = enemy.transform;
+                        distToClosestEnemy = dist;
+                    }
                 }
             }
         }

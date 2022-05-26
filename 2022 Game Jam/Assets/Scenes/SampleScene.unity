@@ -247,11 +247,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8631025021745107059, guid: bfa6ac4d574485345ab0318c167c3b23, type: 3}
-  maxNumEnemies: 5
+  maxNumEnemies: 2
   spawnRate: 3
   minSpawnDist: 25
   maxSpawnDist: 50
   aliveEnemies: []
+  undeadEnemies: []
 --- !u!4 &105224934
 Transform:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class UndeadMovement : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class UndeadMovement : MonoBehaviour
     private Transform player;
     public float playerRadius = 5f;
     public float seekingDist = 30f;
+    public TextMeshPro text;
 
     void Start()
     {
@@ -21,17 +23,25 @@ public class UndeadMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemy.GetClosestEnemy() != null && Vector3.Distance(enemy.GetClosestEnemy().position, player.position) < seekingDist)
+        if(enemy.enemyInRange)
         {
-            agent.isStopped = false;
-            agent.SetDestination(enemy.GetClosestEnemy().position);
+            text.SetText("Fighting");
+            agent.isStopped = true;
         }
-        else if(Vector3.Distance(transform.position, player.position) <= playerRadius || enemy.enemyInRange)
+        else if(enemy.closestEnemy != null && Vector3.Distance(enemy.closestEnemy.position, player.position) < seekingDist)
         {
+            text.SetText("Hunting");
+            agent.isStopped = false;
+            agent.SetDestination(enemy.closestEnemy.position);
+        }
+        else if(Vector3.Distance(transform.position, player.position) <= playerRadius)
+        {
+            text.SetText("Waiting");
             agent.isStopped = true;
         }
         else
         {
+            text.SetText("Following");
             agent.isStopped = false;
             agent.SetDestination(player.position);
         }

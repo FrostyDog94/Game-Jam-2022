@@ -16,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> aliveEnemies;
     [HideInInspector]
     public static EnemySpawner instance = null;
+    [HideInInspector]
+    public List<GameObject> undeadEnemies;
 
     void Start()
     {
@@ -31,8 +33,9 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        while(aliveEnemies.Count < maxNumEnemies)
+        while(enemyCount < maxNumEnemies)
         {
+            enemyCount++;
             aliveEnemies.Add(Instantiate(enemyPrefab, RandomNavSphere(player.position, maxSpawnDist, minSpawnDist, 1), Quaternion.identity));
             yield return new WaitForSeconds(spawnRate);
         }

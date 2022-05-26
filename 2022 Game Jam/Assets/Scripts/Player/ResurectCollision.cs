@@ -25,10 +25,10 @@ public class ResurectCollision : MonoBehaviour
                     playerStats.currentMana -= 10;
                     anim.SetTrigger("resurrect");
                     thirdPersonMovement.enabled = false;
+                    EnemySpawner.instance.undeadEnemies.Add(other.gameObject);
                     StartCoroutine(raiseDead());
 
                 }
-            }
         }
     }
 
