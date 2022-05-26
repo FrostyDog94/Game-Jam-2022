@@ -20,6 +20,7 @@ public class ResurectCollision : MonoBehaviour
             if (Input.GetMouseButton(1))
             {
                 StartCoroutine(other.GetComponent<Enemy>().State_Undead());
+                EnemySpawner.instance.undeadEnemies.Add(other.gameObject);
                 playerStats.currentMana -= 10;
                 anim.SetTrigger("resurrect");
             }

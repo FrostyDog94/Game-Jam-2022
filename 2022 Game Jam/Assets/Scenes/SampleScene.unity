@@ -247,11 +247,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8631025021745107059, guid: bfa6ac4d574485345ab0318c167c3b23, type: 3}
-  maxNumEnemies: 5
+  maxNumEnemies: 2
   spawnRate: 3
   minSpawnDist: 25
   maxSpawnDist: 50
   aliveEnemies: []
+  undeadEnemies: []
 --- !u!4 &105224934
 Transform:
   m_ObjectHideFlags: 0
@@ -613,7 +614,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.148148, y: 1}
+    m_SensorSize: {x: 2.0275862, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5935,7 +5936,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.148148, y: 1}
+    m_SensorSize: {x: 2.0275862, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6821,7 +6822,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.148148, y: 1}
+    m_SensorSize: {x: 2.0275862, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7175,7 +7176,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.148148, y: 1}
+    m_SensorSize: {x: 2.0275862, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
