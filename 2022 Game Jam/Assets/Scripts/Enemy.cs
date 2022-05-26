@@ -23,9 +23,11 @@ public class Enemy : MonoBehaviour
     public Transform closestEnemy;
     [HideInInspector]
     public bool resurrected;
+    private Animator animator;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         rend = GetComponentInChildren<Renderer>();
         player = ThirdPersonMovement.instance.transform;
         StartCoroutine(State_Alive());
@@ -62,11 +64,13 @@ public class Enemy : MonoBehaviour
     public IEnumerator State_Dead()
     {
         currentState = ENEMY_STATE.DEAD;
+        animator.SetTrigger("die");
+        animator.SetBool("isWalking", false);
         GetComponent<EnemyAttack>().enabled = false;
         GetComponent<AllyAttack>().enabled = false;
         GetComponent<AliveMovement>().enabled = false;
         GetComponent<UndeadMovement>().enabled = false;
-        rend.material.color = Color.green;
+        //rend.material.color = Color.green;
         EnemySpawner.instance.aliveEnemies.Remove(this.gameObject);
         while (currentState == ENEMY_STATE.DEAD)
         {
@@ -84,8 +88,11 @@ public class Enemy : MonoBehaviour
     {
         currentState = ENEMY_STATE.UNDEAD;
         GetComponent<UndeadMovement>().enabled = true;
+        GetComponent<AliveMovement>().enabled = false;
         GetComponent<AllyAttack>().enabled = true;
+        GetComponent<EnemyAttack>().enabled = false;
         rend.material.color = Color.blue;
+        animator.SetBool("isWalking", true);
         while(currentState == ENEMY_STATE.UNDEAD)
         {
             yield return null;

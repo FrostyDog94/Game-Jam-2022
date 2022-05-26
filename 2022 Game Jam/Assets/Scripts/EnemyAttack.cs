@@ -9,9 +9,11 @@ public class EnemyAttack : MonoBehaviour
     private bool canAttack = true;
     private PlayerStats playerStats;
     private Enemy enemy;
+    private Animator animator;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         enemy = GetComponent<Enemy>();
     }
@@ -25,9 +27,10 @@ public class EnemyAttack : MonoBehaviour
 
     IEnumerator Attack()
     {
+        animator.SetTrigger("attack");
         canAttack = false;
-        playerStats.currentHealth -= attackDamage;
         yield return new WaitForSeconds(attackCooldown);
+        playerStats.currentHealth -= attackDamage;
         canAttack = true;
     }
 }

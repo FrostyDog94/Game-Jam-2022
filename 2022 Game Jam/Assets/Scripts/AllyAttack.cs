@@ -8,9 +8,11 @@ public class AllyAttack : MonoBehaviour
     private float attackDamage = 5f;
     private bool canAttack = true;
     private Enemy enemy;
+    private Animator animator;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         enemy = GetComponent<Enemy>();
     }
 
@@ -23,9 +25,10 @@ public class AllyAttack : MonoBehaviour
 
     IEnumerator Attack()
     {
+        animator.SetTrigger("attack");
         canAttack = false;
-        enemy.closestEnemy.gameObject.GetComponent<Enemy>().health -= attackDamage;
         yield return new WaitForSeconds(attackCooldown);
+        enemy.closestEnemy.gameObject.GetComponent<Enemy>().health -= attackDamage;
         canAttack = true;
     }
 }

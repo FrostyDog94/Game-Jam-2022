@@ -19,7 +19,7 @@ public class ResurectCollision : MonoBehaviour
         {
             if (enemyCollider.tag == "Enemy" && enemyCollider.GetComponent<Enemy>().currentState == ENEMY_STATE.DEAD)
             {
-                enemyCollider.GetComponentInChildren<Outline>().enabled = true;
+                enemyCollider.GetComponent<Outline>().enabled = true;
 
                 if (Input.GetMouseButtonDown(1) && canResurrect)
                 {
@@ -46,9 +46,9 @@ public class ResurectCollision : MonoBehaviour
     {
         if (enemyCollider != null)
         {
-            if (enemyCollider.GetComponentInChildren<Outline>())
+            if (enemyCollider.GetComponent<Outline>())
             {
-                enemyCollider.GetComponentInChildren<Outline>().enabled = false;
+                enemyCollider.GetComponent<Outline>().enabled = false;
             }
         }
 
