@@ -10,6 +10,7 @@ public class ResurectCollision : MonoBehaviour
     public ThirdPersonMovement thirdPersonMovement;
     public float resurrectTime = 3.5f;
     Collider enemyCollider;
+    bool canResurrect = true;
 
 
     private void Update()
@@ -20,8 +21,9 @@ public class ResurectCollision : MonoBehaviour
             {
                 enemyCollider.GetComponentInChildren<Outline>().enabled = true;
 
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetMouseButtonDown(1) && canResurrect)
                 {
+                    canResurrect = false;
                     playerStats.currentMana -= 10;
                     anim.SetTrigger("resurrect");
                     thirdPersonMovement.enabled = false;
@@ -60,6 +62,7 @@ public class ResurectCollision : MonoBehaviour
         yield return new WaitForSeconds(resurrectTime);
         StartCoroutine(enemyCollider.GetComponent<Enemy>().State_Undead());
         thirdPersonMovement.enabled = true;
+        canResurrect = true;
     }
 
 
