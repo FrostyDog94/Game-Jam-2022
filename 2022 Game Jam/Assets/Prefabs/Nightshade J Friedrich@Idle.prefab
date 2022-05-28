@@ -6271,7 +6271,7 @@ MonoBehaviour:
   attackCollider: {fileID: 3612198105738033424}
   colliderCooldown: 0.1
   particle: {fileID: 3612198103917290896}
-  attackParticles: {fileID: 2567348667148125777, guid: 22854ec1d3ce5c74f8789aecb4c1e7f2, type: 3}
+  attackParticles: {fileID: 3612198104827784756}
 --- !u!114 &3612198104789825862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7652,6 +7652,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22854ec1d3ce5c74f8789aecb4c1e7f2, type: 3}
+--- !u!198 &3612198104827784756 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2567348667148125777, guid: 22854ec1d3ce5c74f8789aecb4c1e7f2, type: 3}
+  m_PrefabInstance: {fileID: 1261031034388392037}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3612198104827784758 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2567348667148125779, guid: 22854ec1d3ce5c74f8789aecb4c1e7f2, type: 3}

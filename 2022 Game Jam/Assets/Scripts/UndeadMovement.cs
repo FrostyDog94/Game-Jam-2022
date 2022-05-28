@@ -35,6 +35,7 @@ public class UndeadMovement : MonoBehaviour
             text.SetText("Hunting");
             agent.isStopped = false;
             agent.SetDestination(enemy.closestEnemy.position);
+            anim.SetBool("isWalking", true);
         }
         else if(Vector3.Distance(transform.position, player.position) <= playerRadius)
         {
@@ -44,11 +45,12 @@ public class UndeadMovement : MonoBehaviour
         }
         else 
         {
-            if (Vector3.Distance(transform.position, player.position) >= playerRadius + 3)
+            text.SetText("Following");
+            agent.isStopped = false;
+            agent.SetDestination(player.position);
+            if (Vector3.Distance(transform.position, player.position) >= playerRadius + 5)
             {
-                text.SetText("Following");
-                agent.isStopped = false;
-                agent.SetDestination(player.position);
+
                 anim.SetBool("isWalking", true);
             }
         }
