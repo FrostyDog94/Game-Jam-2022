@@ -26,10 +26,7 @@ public class PlayerStats : MonoBehaviour
         }
 
         manaBar.value = currentMana / maxMana;
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            currentMana -= 10;
-        }
+
     }
     
 

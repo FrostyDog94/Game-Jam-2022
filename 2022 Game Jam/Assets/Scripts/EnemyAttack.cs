@@ -22,6 +22,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (enemy.playerInRange && canAttack) {
             StartCoroutine(Attack());
+            animator.SetBool("isWalking", false);
         }
     }
 

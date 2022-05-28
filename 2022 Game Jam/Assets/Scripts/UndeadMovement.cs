@@ -12,12 +12,14 @@ public class UndeadMovement : MonoBehaviour
     public float playerRadius = 5f;
     public float seekingDist = 30f;
     public TextMeshPro text;
+    Animator anim;
 
     void Start()
     {
         player = ThirdPersonMovement.instance.transform;
         agent = GetComponent<NavMeshAgent>();
         enemy = GetComponent<Enemy>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,12 +40,19 @@ public class UndeadMovement : MonoBehaviour
         {
             text.SetText("Waiting");
             agent.isStopped = true;
+            anim.SetBool("isWalking", false);
         }
-        else
+        else 
         {
-            text.SetText("Following");
-            agent.isStopped = false;
-            agent.SetDestination(player.position);
+            if (Vector3.Distance(transform.position, player.position) >= playerRadius + 3)
+            {
+                text.SetText("Following");
+                agent.isStopped = false;
+                agent.SetDestination(player.position);
+                anim.SetBool("isWalking", true);
+            }
         }
     }
+
+
 }
