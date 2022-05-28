@@ -15,13 +15,14 @@ public class ResurectCollision : MonoBehaviour
 
     private void Update()
     {
+        
         if (enemyCollider != null)
         {
             if (enemyCollider.tag == "Enemy" && enemyCollider.GetComponent<Enemy>().currentState == ENEMY_STATE.DEAD)
             {
                 enemyCollider.GetComponent<Outline>().enabled = true;
 
-                if (Input.GetMouseButtonDown(1) && canResurrect)
+                if (Input.GetKey(KeyCode.E) && canResurrect)
                 {
                     canResurrect = false;
                     playerStats.currentMana -= 10;
@@ -32,6 +33,9 @@ public class ResurectCollision : MonoBehaviour
                 }
             }
         }
+        
+
+
     }
 
     void OnTriggerStay(Collider other)

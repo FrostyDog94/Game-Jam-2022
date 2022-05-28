@@ -358,6 +358,37 @@ Transform:
   m_Father: {fileID: 2881660183394696718}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1818991879952230186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1235972396471085262}
+  m_Layer: 0
+  m_Name: ProjectileSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1235972396471085262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818991879952230186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.164, z: 0.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8053876154280750345}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1990426115646160306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1269,7 @@ GameObject:
   - component: {fileID: 7646708651742082731}
   - component: {fileID: 3560225344258736225}
   - component: {fileID: -4640091609878621841}
+  - component: {fileID: 984380054268747679}
   m_Layer: 0
   m_Name: MutantEnemy
   m_TagString: Enemy
@@ -1261,6 +1293,7 @@ Transform:
   - {fileID: 8163068064855552271}
   - {fileID: 7412056135728284701}
   - {fileID: 8840262923015649852}
+  - {fileID: 1235972396471085262}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1366,7 +1399,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1391,7 +1424,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1.8
   m_Direction: 1
-  m_Center: {x: 0, y: 0.87, z: 0.16}
+  m_Center: {x: 0, y: 0.87, z: 0}
 --- !u!114 &-4640091609878621841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1410,6 +1443,21 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &984380054268747679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7245954372546656179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19e153447ab618489f3d4b543c7b2fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 3008869989351374880, guid: 375cefecbea56334ca6c80222d2dcb4d, type: 3}
+  fireRate: 8
+  projectileSpawnPoint: {fileID: 1235972396471085262}
 --- !u!1 &7359385591796065175
 GameObject:
   m_ObjectHideFlags: 0
