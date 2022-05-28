@@ -32,6 +32,13 @@ public class destroySelf : MonoBehaviour
             other.GetComponent<Enemy>().TakeDamage(75);
 
         }
+
+        if (other.tag == "Player" && other.GetComponent<PlayerStats>().currentHealth <= other.GetComponent<PlayerStats>().maxHealth)
+        {
+
+            other.GetComponent<PlayerStats>().currentHealth += 30;
+
+        }
     }
 
 

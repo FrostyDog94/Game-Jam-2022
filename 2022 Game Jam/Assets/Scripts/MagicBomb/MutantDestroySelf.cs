@@ -29,7 +29,7 @@ public class MutantDestroySelf : MonoBehaviour
         if (other.tag == "Player")
         {
             
-            other.GetComponent<PlayerStats>().currentHealth -= 40;
+            other.GetComponent<PlayerStats>().currentHealth -= 20;
 
         }
     }

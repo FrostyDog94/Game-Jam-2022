@@ -5,6 +5,8 @@ using UnityEngine;
 public class Sacrifice : MonoBehaviour
 {
     public ScoreController scoreController;
+    public PlayerStats playerStats;
+    public EnemySpawner enemySpawner;
  
 
 
@@ -13,7 +15,11 @@ public class Sacrifice : MonoBehaviour
         if (other.gameObject.tag == "Enemy" && other.GetComponent<Enemy>().currentState == ENEMY_STATE.UNDEAD)
         {
             Destroy(other.gameObject);
-            scoreController.score -= 1;
+            scoreController.score += 1;
+            if (playerStats.currentMana < playerStats.maxMana) {
+                playerStats.currentMana += 30;
+            }
+            enemySpawner.RemoveEnemy();
         }
     }
 }

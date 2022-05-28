@@ -25,7 +25,7 @@ public class ResurectCollision : MonoBehaviour
                 if (Input.GetKey(KeyCode.E) && canResurrect)
                 {
                     canResurrect = false;
-                    playerStats.currentMana -= 10;
+                    //playerStats.currentMana -= 10;
                     anim.SetTrigger("resurrect");
                     thirdPersonMovement.enabled = false;
                     EnemySpawner.instance.undeadEnemies.Add(enemyCollider.gameObject);

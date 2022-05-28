@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public float minSpawnDist = 25f;
     public float maxSpawnDist = 50f;
     private Transform player;
-    private int enemyCount = 0;
+    public int enemyCount = 0;
     [HideInInspector]
     public List<GameObject> aliveEnemies;
     [HideInInspector]
@@ -19,16 +19,28 @@ public class EnemySpawner : MonoBehaviour
     [HideInInspector]
     public List<GameObject> undeadEnemies;
 
+    float spawnTimer;
+
     void Start()
     {
         player = ThirdPersonMovement.instance.transform;
         instance = this;
-        StartCoroutine("SpawnEnemy");
+       // StartCoroutine("SpawnEnemy");
+        spawnTimer = 1;
     }
 
     void Update()
     {
-
+        spawnTimer -= Time.deltaTime;
+        if (spawnTimer <= 0)
+        {
+            spawnTimer = spawnRate;
+            if (enemyCount < maxNumEnemies)
+            {
+                enemyCount++;
+                aliveEnemies.Add(Instantiate(enemyPrefab, RandomNavSphere(player.position, maxSpawnDist, minSpawnDist, 1), Quaternion.identity));
+            }
+        }
     }
 
     IEnumerator SpawnEnemy()
@@ -56,5 +68,10 @@ public class EnemySpawner : MonoBehaviour
         //Debug.DrawRay(navHit.position, Vector3.up, Color.red, 15, true);
  
         return navHit.position;
+    }
+
+    public void RemoveEnemy()
+    {
+        enemyCount -= 1;
     }
 }

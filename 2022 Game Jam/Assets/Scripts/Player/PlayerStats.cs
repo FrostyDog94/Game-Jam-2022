@@ -27,6 +27,26 @@ public class PlayerStats : MonoBehaviour
 
         manaBar.value = currentMana / maxMana;
 
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        if (currentMana > maxMana)
+        {
+            currentMana = maxMana;
+        }
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+        }
+
+        if (currentMana <= 0)
+        {
+            currentMana = 0;
+        }
+
     }
     
 
