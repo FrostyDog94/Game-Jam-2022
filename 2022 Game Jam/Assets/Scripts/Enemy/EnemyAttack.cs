@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    private float attackCooldown = 2f;
-    private float attackDamage = 5f;
+    public float attackCooldown = 2f;
+    public float attackDamage = 5f;
+    public bool isRanged;
     private bool canAttack = true;
     private PlayerStats playerStats;
     private Enemy enemy;
@@ -20,7 +21,7 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
-        if (enemy.playerInRange && canAttack) {
+        if (!isRanged && enemy.playerInRange && canAttack) {
             StartCoroutine(Attack());
             animator.SetBool("isWalking", false);
         }

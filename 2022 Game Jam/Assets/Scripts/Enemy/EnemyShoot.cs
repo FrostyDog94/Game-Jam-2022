@@ -8,32 +8,36 @@ public class EnemyShoot : MonoBehaviour
     public float fireRate = 5.0f;
     float fireTime;
     public Transform projectileSpawnPoint;
+    private Animator animator;
    
     Enemy enemy;
     // Start is called before the first frame update
     void Start()
     {
         enemy = GetComponent<Enemy>();
+        animator = GetComponent<Animator>();
         fireTime = fireRate;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemy.playerInRange == false && enemy.currentState == ENEMY_STATE.ALIVE)
+        if (enemy.currentState == ENEMY_STATE.ALIVE) // && enemy.playerInRange == false
         {
             fireTime -= Time.deltaTime;
         }
 
         if (fireTime <= 0)
         {
-            fireProjectile();
+            StartCoroutine(fireProjectile());
             fireTime = fireRate;
         }
     }
 
-    void fireProjectile()
+    IEnumerator fireProjectile()
     {
+        animator.SetTrigger("attack");
+        yield return new WaitForSeconds(1);
         Instantiate(projectile, projectileSpawnPoint.position, transform.rotation);
     }
 }

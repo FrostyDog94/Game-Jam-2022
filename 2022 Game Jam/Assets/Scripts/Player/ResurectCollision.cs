@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Linq;
 
 public class ResurectCollision : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class ResurectCollision : MonoBehaviour
     public float resurrectTime = 3.5f;
     Collider enemyCollider;
     bool canResurrect = true;
+    private Image healthFill;
 
 
     private void Update()
@@ -18,7 +21,9 @@ public class ResurectCollision : MonoBehaviour
         
         if (enemyCollider != null)
         {
-            if (enemyCollider.tag == "Enemy" && enemyCollider.GetComponent<Enemy>().currentState == ENEMY_STATE.DEAD)
+            if (enemyCollider.tag == "Enemy" && 
+                enemyCollider.GetComponent<Enemy>().currentState == ENEMY_STATE.DEAD && 
+                enemyCollider.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f) // make sure death animation is finished
             {
                 enemyCollider.GetComponent<Outline>().enabled = true;
 
@@ -66,6 +71,7 @@ public class ResurectCollision : MonoBehaviour
         {
             StartCoroutine(enemyCollider.GetComponent<Enemy>().State_Undead());
             enemyCollider.GetComponent<Enemy>().health = 100;
+            enemyCollider.GetComponentsInChildren<Image>().FirstOrDefault(c => c.gameObject.name == "Fill").color = Color.green;
         }
         thirdPersonMovement.enabled = true;
         canResurrect = true;

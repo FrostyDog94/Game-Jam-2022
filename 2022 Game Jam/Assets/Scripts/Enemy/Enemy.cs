@@ -24,11 +24,13 @@ public class Enemy : MonoBehaviour
     [HideInInspector]
     public bool resurrected;
     private Animator animator;
+    private UnityEngine.AI.NavMeshAgent agent;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         rend = GetComponentInChildren<Renderer>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         player = ThirdPersonMovement.instance.transform;
         StartCoroutine(State_Alive());
     }
@@ -69,6 +71,7 @@ public class Enemy : MonoBehaviour
         currentState = ENEMY_STATE.DEAD;
         animator.SetTrigger("die");
         animator.SetBool("isWalking", false);
+        agent.isStopped = true;
         GetComponent<EnemyAttack>().enabled = false;
         GetComponent<AllyAttack>().enabled = false;
         GetComponent<AliveMovement>().enabled = false;
@@ -97,7 +100,6 @@ public class Enemy : MonoBehaviour
         GetComponent<AliveMovement>().enabled = false;
         GetComponent<AllyAttack>().enabled = true;
         GetComponent<EnemyAttack>().enabled = false;
-        rend.material.color = Color.blue;
         animator.SetBool("isWalking", true);
         GetComponent<CapsuleCollider>().height = 1.8f;
         GetComponent<CapsuleCollider>().radius = 0.5f;

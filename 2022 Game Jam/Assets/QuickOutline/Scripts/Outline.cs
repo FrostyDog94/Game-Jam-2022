@@ -211,9 +211,7 @@ public class Outline : MonoBehaviour {
       }
 
       // Clear UV3
-      if (skinnedMeshRenderer.sharedMesh.isReadable) {
-        skinnedMeshRenderer.sharedMesh.uv4 = new Vector2[skinnedMeshRenderer.sharedMesh.vertexCount];
-      }
+      skinnedMeshRenderer.sharedMesh.uv4 = new Vector2[skinnedMeshRenderer.sharedMesh.vertexCount];
 
       // Combine submeshes
       CombineSubmeshes(skinnedMeshRenderer.sharedMesh, skinnedMeshRenderer.sharedMaterials);

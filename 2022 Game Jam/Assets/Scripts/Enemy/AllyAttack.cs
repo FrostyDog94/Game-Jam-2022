@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AllyAttack : MonoBehaviour
 {
-    private float attackCooldown = 2f;
-    private float attackDamage = 5f;
+    public float attackCooldown = 2f;
+    public float attackDamage = 5f;
     private bool canAttack = true;
     private Enemy enemy;
     private Animator animator;
