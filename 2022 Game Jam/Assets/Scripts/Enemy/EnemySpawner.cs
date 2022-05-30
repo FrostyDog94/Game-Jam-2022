@@ -11,6 +11,8 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRate = 3f;
     public float minSpawnDist = 25f;
     public float maxSpawnDist = 50f;
+    [Range(0, 100)]
+    public float chanceToSpawnBig = 20f;
     private Transform player;
     public int enemyCount = 0;
     [HideInInspector]
@@ -38,8 +40,16 @@ public class EnemySpawner : MonoBehaviour
             spawnTimer = spawnRate;
             if (enemyCount < maxNumEnemies)
             {
+                int spawnRange = Random.Range(0, 100);
+                if(spawnRange > chanceToSpawnBig)//typically 0.8?
+                {
+                    aliveEnemies.Add(Instantiate(enemyPrefab, RandomNavSphere(player.position, maxSpawnDist, minSpawnDist, 1), Quaternion.identity));
+                }
+                else
+                {
+                    aliveEnemies.Add(Instantiate(bigEnemyPrefab, RandomNavSphere(player.position, maxSpawnDist, minSpawnDist, 1), Quaternion.identity));
+                }
                 enemyCount++;
-                aliveEnemies.Add(Instantiate(enemyPrefab, RandomNavSphere(player.position, maxSpawnDist, minSpawnDist, 1), Quaternion.identity));
             }
         }
     }
