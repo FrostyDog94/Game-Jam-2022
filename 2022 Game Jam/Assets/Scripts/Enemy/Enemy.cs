@@ -51,9 +51,6 @@ public class Enemy : MonoBehaviour
         GetComponent<EnemyAttack>().enabled = true;
         GetComponent<AllyAttack>().enabled = false;
         GetComponent<AliveMovement>().enabled = true;
-        GetComponent<CapsuleCollider>().height = 1.8f;
-        GetComponent<CapsuleCollider>().radius = 0.5f;
-        GetComponent<CapsuleCollider>().center = new Vector3(0, 0.87f, 0);
         while (currentState == ENEMY_STATE.ALIVE) 
         {
             if(health <= 0)
@@ -78,9 +75,6 @@ public class Enemy : MonoBehaviour
         GetComponent<UndeadMovement>().enabled = false;
         //rend.material.color = Color.green;
         EnemySpawner.instance.aliveEnemies.Remove(this.gameObject);
-        GetComponent<CapsuleCollider>().height = 0.5f;
-        GetComponent<CapsuleCollider>().radius = 0.8f;
-        GetComponent<CapsuleCollider>().center = Vector3.zero;
         while (currentState == ENEMY_STATE.DEAD)
         {
             if(resurrected)
@@ -101,9 +95,6 @@ public class Enemy : MonoBehaviour
         GetComponent<AllyAttack>().enabled = true;
         GetComponent<EnemyAttack>().enabled = false;
         animator.SetBool("isWalking", true);
-        GetComponent<CapsuleCollider>().height = 1.8f;
-        GetComponent<CapsuleCollider>().radius = 0.5f;
-        GetComponent<CapsuleCollider>().center = new Vector3(0, 0.87f, 0);
         while (currentState == ENEMY_STATE.UNDEAD)
         {
             yield return null;

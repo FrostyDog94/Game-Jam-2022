@@ -1377,6 +1377,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbbf56565f0d6141ae1409afc713778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackCooldown: 2
+  attackDamage: 20
+  isRanged: 0
 --- !u!114 &7403740568223764083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1389,6 +1392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98bc083c85de68347bc5aa92b001b50e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackCooldown: 2
+  attackDamage: 5
 --- !u!195 &7646708651742082731
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -22,17 +22,17 @@ public class EnemyAttack : MonoBehaviour
     void Update()
     {
         if (!isRanged && enemy.playerInRange && canAttack) {
-            StartCoroutine(Attack());
+            //StartCoroutine(Attack());
+            animator.SetTrigger("attack");
             animator.SetBool("isWalking", false);
         }
     }
 
     IEnumerator Attack()
     {
-        animator.SetTrigger("attack");
+        playerStats.currentHealth -= attackDamage;
         canAttack = false;
         yield return new WaitForSeconds(attackCooldown);
-        playerStats.currentHealth -= attackDamage;
         canAttack = true;
     }
 }
