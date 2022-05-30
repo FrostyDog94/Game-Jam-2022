@@ -25,10 +25,10 @@ public class GameOverScreen : MonoBehaviour
     }
 
     public void RestartButton() {
-        SceneManager.LoadScene("ForestScene");
+        SceneManager.LoadScene("MainLevel");
     }
 
     public void ExitButton() {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("TitleScreen");
     }
 }
