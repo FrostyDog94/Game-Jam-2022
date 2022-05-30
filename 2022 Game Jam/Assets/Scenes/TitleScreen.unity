@@ -40465,7 +40465,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Necromancer: Death is Only the Beginning'
+  m_text: 'NecroTina: Lich Queen'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24cffdbed4cedf64d96334b56eeba6b1, type: 2}
   m_sharedMaterial: {fileID: 4582005351845424960, guid: 24cffdbed4cedf64d96334b56eeba6b1, type: 2}

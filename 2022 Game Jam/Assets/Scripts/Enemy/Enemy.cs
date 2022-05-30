@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
     {
         currentState = ENEMY_STATE.ALIVE;
         GetComponent<EnemyAttack>().enabled = true;
-        GetComponent<AllyAttack>().enabled = false;
+        //GetComponent<AllyAttack>().enabled = false;
         GetComponent<AliveMovement>().enabled = true;
         while (currentState == ENEMY_STATE.ALIVE) 
         {
@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
         animator.SetBool("isWalking", false);
         agent.isStopped = true;
         GetComponent<EnemyAttack>().enabled = false;
-        GetComponent<AllyAttack>().enabled = false;
+        //GetComponent<AllyAttack>().enabled = false;
         GetComponent<AliveMovement>().enabled = false;
         GetComponent<UndeadMovement>().enabled = false;
         //rend.material.color = Color.green;
@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour
         currentState = ENEMY_STATE.UNDEAD;
         GetComponent<UndeadMovement>().enabled = true;
         GetComponent<AliveMovement>().enabled = false;
-        GetComponent<AllyAttack>().enabled = true;
+        //GetComponent<AllyAttack>().enabled = true;
         GetComponent<EnemyAttack>().enabled = false;
         animator.SetBool("isWalking", true);
         while (currentState == ENEMY_STATE.UNDEAD)

@@ -1367,7 +1367,6 @@ GameObject:
   - component: {fileID: 2747358103142521809}
   - component: {fileID: 2747358103142521823}
   - component: {fileID: -6567106119950795610}
-  - component: {fileID: 2747358103142521822}
   - component: {fileID: 2747358103142521820}
   - component: {fileID: 2747358103142521819}
   - component: {fileID: 2747358103142521818}
@@ -1445,7 +1444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 3008869989351374880, guid: 375cefecbea56334ca6c80222d2dcb4d, type: 3}
-  fireRate: 8
+  fireRate: 6
   projectileSpawnPoint: {fileID: 2747358105075914992}
 --- !u!114 &2747358103142521809
 MonoBehaviour:
@@ -1502,20 +1501,6 @@ MonoBehaviour:
   attackCooldown: 2
   attackDamage: 5
   isRanged: 1
---- !u!114 &2747358103142521822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3090026188310343357}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98bc083c85de68347bc5aa92b001b50e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackCooldown: 2
-  attackDamage: 5
 --- !u!114 &2747358103142521820
 MonoBehaviour:
   m_ObjectHideFlags: 0
