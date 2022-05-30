@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public GameObject bigEnemyPrefab;
     public int maxNumEnemies = 10;
     public float spawnRate = 3f;
     public float minSpawnDist = 25f;
@@ -52,6 +53,7 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnRate);
         }
     }
+    
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, float minDist, int layermask) 
     {
         NavMeshHit navHit;
